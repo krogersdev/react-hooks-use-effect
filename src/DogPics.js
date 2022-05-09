@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 
 // WARNING: this useEffect will run in an infinite loop!
@@ -6,16 +7,13 @@ function DogPics() {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect");
     fetch("https://dog.ceo/api/breeds/image/random/3")
       .then((r) => r.json())
       .then((data) => {
-        console.log("setState");
+        // setting state in the useEffect callback
         setImages(data.message);
       });
-  });
-
-  console.log("render");
+  }, []);
 
   return (
     <div>
